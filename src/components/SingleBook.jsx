@@ -15,7 +15,7 @@ class SingleBook extends Component {
             variant="top"
             src={this.props.book.img}
             onClick={() => {
-              this.props.changeAsin(this.props.book.asin);
+              this.props.changeBookSelected(this.props.book);
               // this.setState({ selected: !this.state.selected });
             }}
           />

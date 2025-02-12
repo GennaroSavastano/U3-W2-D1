@@ -7,10 +7,10 @@ import CommentArea from "./CommentArea";
 class BookList extends Component {
   state = {
     searchQuery: "",
-    selectedBookAsin: "",
+    selectedBook: null,
   };
 
-  changeAsin = (asin) => this.setState({ selectedBookAsin: asin });
+  changeBookSelected = (book) => this.setState({ selectedBook: book });
 
   render() {
     return (
@@ -31,15 +31,19 @@ class BookList extends Component {
                   <SingleBook
                     key={book.asin}
                     book={book}
-                    changeAsin={this.changeAsin}
-                    selectedBookAsin={this.state.selectedBookAsin}
+                    changeBookSelected={this.changeBookSelected}
+                    selectedBookAsin={this.state.selectedBook ? this.state.selectedBook.asin : ""}
                   />
                 ))}
             </Row>
           </Col>
           <Col xs={1} sm={2} md={4}>
-            {this.state.selectedBookAsin ? (
-              <CommentArea asin={this.state.selectedBookAsin} />
+            {this.state.selectedBook ? (
+              <CommentArea
+                asin={this.state.selectedBook.asin}
+                imgSrc={this.state.selectedBook.img}
+                title={this.state.selectedBook.title}
+              />
             ) : (
               <Alert variant="warning">Seleziona un libro per visualizzare le recensioni !</Alert>
             )}

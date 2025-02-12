@@ -1,7 +1,7 @@
 import { Component } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
-import { Alert, Spinner } from "react-bootstrap";
+import { Alert, Image, Spinner } from "react-bootstrap";
 
 class CommentArea extends Component {
   state = {
@@ -43,8 +43,10 @@ class CommentArea extends Component {
   render() {
     console.log("RENDER COMMENT AREA", this.state.reviews);
     return (
-      <div className="commentArea">
-        <h6>CommentArea</h6>
+      <div className="commentArea sticky-top">
+        <Image fluid src={this.props.imgSrc} className="d-block mx-auto mb-5 w-75 p-5" />
+        <h5>CommentArea</h5>
+        <h6>Recensioni per {this.props.title} </h6>
 
         {this.state.fetched ? (
           this.state.reviews.length > 0 ? (
